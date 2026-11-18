@@ -1,65 +1,21 @@
-const BUSINESS_WHATSAPP = "265999277733";
-const menuToggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".main-nav");
-const modal = document.getElementById("quoteModal");
-const form = document.getElementById("quoteForm");
-
-if (menuToggle && nav) {
-  menuToggle.addEventListener("click", () => {
-    const open = nav.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(open));
-    menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
-  });
-  nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
-    nav.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-  }));
-}
-
-function openModal() {
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-}
-function closeModal() {
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-}
-document.querySelectorAll("[data-quote]").forEach(button => button.addEventListener("click", openModal));
-document.querySelectorAll("[data-close-modal]").forEach(button => button.addEventListener("click", closeModal));
-document.addEventListener("keydown", event => { if (event.key === "Escape" && modal.classList.contains("open")) closeModal(); });
-
-document.querySelectorAll("[data-pick-service]").forEach(button => button.addEventListener("click", () => {
-  const select = form.elements.service;
-  select.value = button.dataset.pickService;
-  closeModal();
-  document.getElementById("contact").scrollIntoView({behavior:"smooth"});
-  setTimeout(() => form.elements.name.focus({preventScroll:true}), 500);
-}));
-document.querySelectorAll("[data-service]").forEach(link => link.addEventListener("click", () => {
-  const select = form.elements.service;
-  if (select) select.value = link.dataset.service;
-}));
-
-form.addEventListener("submit", event => {
-  event.preventDefault();
-  if (!form.reportValidity()) return;
-  const data = new FormData(form);
-  const message = [
-    "Hello Vision Printers, I'd like to request a quotation.",
-    "",
-    "Name: " + data.get("name"),
-    "Phone: " + data.get("phone"),
-    "Service: " + data.get("service"),
-    "Project details: " + data.get("details"),
-    "",
-    "Please let me know the next steps. Thank you."
-  ].join("\n");
-  const url = "https://wa.me/" + BUSINESS_WHATSAPP + "?text=" + encodeURIComponent(message);
-  window.open(url, "_blank", "noopener,noreferrer");
-  const feedback = form.querySelector(".form-feedback");
-  feedback.textContent = "WhatsApp is opening with your enquiry. Please press Send in WhatsApp to deliver it.";
-});
-
-document.getElementById("year").textContent = new Date().getFullYear();
+const BUSINESS_WHATSAPP="265999277733";
+const menuToggle=document.querySelector(".menu-toggle"),nav=document.querySelector(".main-nav"),modal=document.getElementById("quoteModal"),form=document.getElementById("quoteForm");
+if(menuToggle&&nav){menuToggle.addEventListener("click",()=>{const open=nav.classList.toggle("open");menuToggle.setAttribute("aria-expanded",String(open));menuToggle.setAttribute("aria-label",open?"Close navigation":"Open navigation")});nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");menuToggle.setAttribute("aria-expanded","false")}))}
+function openModal(){modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden"}
+function closeModal(){modal.classList.remove("open");modal.setAttribute("aria-hidden","true");document.body.style.overflow=""}
+document.querySelectorAll("[data-quote]").forEach(b=>b.addEventListener("click",openModal));
+document.querySelectorAll("[data-close-modal]").forEach(b=>b.addEventListener("click",closeModal));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.contains("open"))closeModal()});
+document.querySelectorAll("[data-pick-service]").forEach(b=>b.addEventListener("click",()=>{form.elements.service.value=b.dataset.pickService;closeModal();document.getElementById("contact").scrollIntoView({behavior:"smooth"});setTimeout(()=>form.elements.name.focus({preventScroll:true}),500)}));
+document.querySelectorAll("[data-service]").forEach(a=>a.addEventListener("click",()=>{if(form.elements.service)form.elements.service.value=a.dataset.service}));
+const translations={
+en:{navServices:"Services",navStudio:"The studio",navIdeas:"Print ideas",navContact:"Contact",navQuote:"Discuss a project ↗",heroLead:"From the first sketch to the final print. We bring printing, branding, design and everyday document services together — helping your ideas take shape in the real world.",heroCta:"Start a conversation ↗",heroExplore:"Explore our services ↓",searchLabel:"Find a service",searchPlaceholder:"Search printing, banners, embroidery...",equipmentEyebrow:"PRODUCTION CAPABILITIES",equipmentTitle:"The right tools. More ways to create.",equipmentLead:"A closer look at the production equipment featured by Vision Printers — and the possibilities it brings to print and apparel projects.",equipmentOne:"For banners, posters and advertising graphics.",equipmentTwo:"For branded garments, uniforms and caps.",equipmentLink:"VIEW PUBLISHED EQUIPMENT DETAILS ↗",everydayEyebrow:"FOR WORK, STUDY & EVERY DAY",everydayTitle:"Small jobs matter. We make them easier.",everydayLead:"Everyday document services for the things you need to get done.",formHeading:"PROJECT ENQUIRY",formSub:"NO ACCOUNT NEEDED",quantityLabel:"Estimated quantity",deadlineLabel:"When do you need it?",detailsLabel:"Project details",formSubmit:"Continue on WhatsApp ↗"},
+ny:{navServices:"Ntchito zathu",navStudio:"Za kampani",navIdeas:"Zitsanzo za ntchito",navContact:"Lumikizanani nafe",navQuote:"Kambiranani za ntchito ↗",heroLead:"Kuyambira pa lingaliro loyamba mpaka ntchito yomalizidwa. Timapereka ntchito zosindikiza, kupanga zizindikiro za kampani, mapangidwe ndi ntchito za zikalata kuti malingaliro anu akwaniritsidwe.",heroCta:"Tiyeni tikambirane ↗",heroExplore:"Onani ntchito zathu ↓",searchLabel:"Sakani ntchito",searchPlaceholder:"Sakani zosindikiza, zikwangwani, embroidery...",equipmentEyebrow:"ZIPANGIZO ZOPANGIRA NTCHITO",equipmentTitle:"Zipangizo zabwino. Njira zambiri zopangira.",equipmentLead:"Onani zipangizo zomwe Vision Printers imaonetsa komanso ntchito zomwe zingapangidwe pogwiritsa ntchito zipangizozi.",equipmentOne:"Zikwangwani, ma poster ndi zithunzi zotsatsa.",equipmentTwo:"Zovala zokhala ndi chizindikiro cha kampani, mayunifomu ndi zipewa.",equipmentLink:"ONANI TSAMBA LA ZIPANGIZO ↗",everydayEyebrow:"NTCHITO, MAPHUNZIRO NDI MOYO WA TSIKU NDI TSIKU",everydayTitle:"Ngakhale ntchito zazing'ono n'zofunika.",everydayLead:"Ntchito za zikalata zokuthandizani pa zofunika za tsiku ndi tsiku.",formHeading:"FOTOKOZANI NTCHITO YANU",formSub:"PALIBE AKAUNTI YOFUNIKA",quantityLabel:"Chiwerengero chimene mukufuna",deadlineLabel:"Mukufuna ntchitoyi liti?",detailsLabel:"Tsatanetsatane wa ntchito",formSubmit:"Pitilizani pa WhatsApp ↗"}
+};
+let language="en";
+function setLanguage(next){language=next;document.documentElement.lang=next==="ny"?"ny":"en";document.querySelectorAll("[data-t]").forEach(el=>{const key=el.dataset.t;if(translations[next][key])el.textContent=translations[next][key]});document.querySelectorAll("[data-placeholder]").forEach(el=>{const key=el.dataset.placeholder;if(translations[next][key])el.placeholder=translations[next][key]});const toggle=document.getElementById("languageToggle");toggle.textContent=next==="en"?"CHI ↔ EN":"EN ↔ CHI";toggle.setAttribute("aria-label",next==="en"?"Sinthani chilankhulo kukhala Chichewa":"Change language to English")}
+document.getElementById("languageToggle").addEventListener("click",()=>setLanguage(language==="en"?"ny":"en"));
+const search=document.getElementById("serviceSearch"),status=document.getElementById("searchStatus");
+if(search){search.addEventListener("input",()=>{const q=search.value.trim().toLowerCase();let count=0;document.querySelectorAll(".service-row").forEach(row=>{const show=row.textContent.toLowerCase().includes(q);row.hidden=!show;if(show)count++});status.textContent=q?(count?count+" service(s) found":"No matching services. Try another word."):""})}
+form.addEventListener("submit",e=>{e.preventDefault();if(!form.reportValidity())return;const d=new FormData(form);const message=["Hello Vision Printers, I'd like to request a quotation.","","Name: "+d.get("name"),"Phone: "+d.get("phone"),"Service: "+d.get("service"),"Estimated quantity: "+(d.get("quantity")||"Not specified"),"Preferred date: "+(d.get("deadline")||"Not specified"),"Project details: "+d.get("details"),"","Please let me know the next steps. Thank you."].join("\n");window.open("https://wa.me/"+BUSINESS_WHATSAPP+"?text="+encodeURIComponent(message),"_blank","noopener,noreferrer");form.querySelector(".form-feedback").textContent="WhatsApp is opening with your enquiry. Please press Send in WhatsApp to deliver it."});
+document.getElementById("year").textContent=new Date().getFullYear();

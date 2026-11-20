@@ -1,26 +1,31 @@
-# Vision Printers — Independent Website Redesign Concept
+# Pyramids Development & Investments — Website Concept
 
-A responsive static website concept for Vision Printers & Graphic Suppliers, Blantyre, Malawi.
+A responsive, static website concept prepared by Golden-Rhys Company as an illustrative preview for Pyramids Development & Investments Ltd, Malawi.
 
-## Deploy on Render
-- Create a **Static Site** connected to this repository.
+## Render deployment
+- Static Site
 - Branch: `master`
 - Build command: leave blank
 - Publish directory: `.`
 
 ## Files
-- `index.html` — website
-- `styles.css` — responsive design
-- `script.js` — navigation, enquiry form and WhatsApp handoff
-- `image-credits.html` — Wikimedia Commons image attribution
+- `index.html` — complete website structure and content
+- `styles.css` — responsive visual system and layouts
+- `script.js` — mobile navigation and enquiry-copy interaction
+- `image-credits.html` — image source and concept notes
 
-## Important demo limitations
-- The quotation form opens WhatsApp with a prefilled message. The visitor must press Send in WhatsApp.
-- No backend, database, admin dashboard, automatic email delivery or file upload is connected.
-- Never place Gmail app passwords or other secrets in frontend code. For automatic email delivery, connect a secure backend and store credentials in Render environment variables.
-- The visual project cards are illustrative concepts, not verified Vision Printers client work.
-- Workshop photographs are illustrative Wikimedia Commons images, not confirmed photographs of Vision Printers' staff or premises.
-- This is an independent redesign concept and is not the company's official website.
+## Concept scope
+- Premium responsive presentation
+- Decorative paints and wall finishes
+- Wood panels, cornices and interior solutions
+- Interior inspiration gallery
+- Blantyre and Lilongwe location sections
+- Enquiry form that prepares text for copying
 
-## Business details
-Publicly listed contact details and services were used as the factual basis. Confirm details with the business before any production launch.
+## Important accuracy notes
+This is an independent concept preview, not Pyramids' official or approved website. Product categories, descriptions, location details and all visual imagery must be confirmed by the business before any production launch. Unsplash photographs are illustrative and do not depict verified Pyramids products, projects, staff, customers or premises.
+
+The enquiry form does not submit data, send email, open WhatsApp, or store personal information. It only attempts to copy the visitor's enquiry text to their clipboard. No backend, database, payment system, inventory, live booking, or admin dashboard is included.
+
+## Reusing this repository
+This repository is the reusable Golden-Rhys demo website. For another prospect, replace the business-specific copy, visual identity, imagery, contact details and location content in the HTML/CSS/JS, then verify every claim and contact route before sharing the preview.
